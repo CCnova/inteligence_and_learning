@@ -31,8 +31,11 @@ Node.prototype.visit = function (parent) {
   console.log(this.value);
   fill(255);
   noStroke();
+  textAlign(CENTER);
   text(this.value, this.x, this.y);
   stroke(255);
+  noFill();
+  ellipse(this.x, this.y, 20, 20);
   line(parent.x, parent.y, this.x, this.y);
   if (this.right != null) {
     this.right.visit(this);
@@ -42,7 +45,7 @@ Node.prototype.visit = function (parent) {
 Node.prototype.addNode = function (n, level = 0) {
   if (n.value < this.value && this.left == null) {
     this.left = n;
-    this.left.x = this.x - 2 * (50 - level) - 10;
+    this.left.x = this.x - 30;
     this.left.y = this.y + 20;
     return;
   }
@@ -52,7 +55,7 @@ Node.prototype.addNode = function (n, level = 0) {
 
   if (n.value > this.value && this.right == null) {
     this.right = n;
-    this.right.x = this.x + 2 * (50 + level) + 10;
+    this.right.x = this.x + 30;
     this.right.y = this.y + 20;
     return;
   }
