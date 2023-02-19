@@ -44,3 +44,10 @@ class Node:
             return self.right.search(value)
 
         return None
+
+    def print_chunk(self, level) -> None:
+        if self.left is not None:
+            self.left.print_chunk(level + 1)
+        print(' ' * 4 * level + '-> ' + str(self.value))
+        if self.right is not None:
+            self.right.print_chunk(level + 1)

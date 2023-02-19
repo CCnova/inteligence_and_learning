@@ -26,3 +26,6 @@ class Tree:
         else:
             print(f'Found node={found} with value {value}')
         return found
+
+    def print_tree(self):
+        self.root.print_chunk(0)
