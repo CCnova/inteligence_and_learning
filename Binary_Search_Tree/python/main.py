@@ -1,7 +1,6 @@
 from tree import Tree
-from random import seed, randint
+from random import randint
 
-# seed(1)
 
 tree = Tree()
 
