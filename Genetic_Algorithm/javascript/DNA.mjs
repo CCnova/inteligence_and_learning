@@ -30,7 +30,7 @@ export function DNA(size) {
    */
   this.crossover = function (partner) {
     const child = new DNA(this.genes.length);
-    const midpoint = Math.floor(Math.random(this.genes.length));
+    const midpoint = Math.floor(Math.random() * this.genes.length);
 
     for (let i = 0; i < this.genes.length; i++) {
       if (i > midpoint) child.genes[i] = this.genes[i];

@@ -20,6 +20,7 @@ export function Population(target, mutationRate, popMax) {
       const individualFitness = this.population[i].fitness;
       console.log({ individualFitness });
       const numberOccurrenciesInPool = Math.floor(individualFitness * 100);
+      console.log({ numberOccurrenciesInPool });
       for (let j = 0; j < numberOccurrenciesInPool; j++) {
         this.selectionProbabilityPool.push(this.population[i]);
       }
@@ -35,6 +36,7 @@ export function Population(target, mutationRate, popMax) {
       const partnerBIndex = Math.floor(
         Math.random() * this.selectionProbabilityPool.length
       );
+      console.log({ partnerAIndex, partnerBIndex });
       const partnerA = this.selectionProbabilityPool[partnerAIndex];
       console.log("Partner A ", partnerA.genes);
       console.log("index", partnerAIndex);
@@ -52,7 +54,7 @@ export function Population(target, mutationRate, popMax) {
 
   this.haveTarget = function () {
     for (let i = 0; i < this.population.length; i++) {
-      if (this.population[i] === this.target) return true;
+      if (this.population[i].genes.join("") === this.target) return true;
     }
 
     return false;
