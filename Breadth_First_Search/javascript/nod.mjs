@@ -1,4 +1,4 @@
-export function makeNode(value) {
+export function createNode(value) {
   let neighboors = [];
   let parent = null;
   let searched = false;

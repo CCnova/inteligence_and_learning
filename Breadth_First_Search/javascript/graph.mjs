@@ -1,6 +1,6 @@
-import { makeNode } from "./nod.mjs";
+import { createNode } from "./nod.mjs";
 
-export function makeGraph() {
+export function createGraph() {
   let nodes = [];
   const root = null;
   let graph = {};
@@ -8,8 +8,9 @@ export function makeGraph() {
   return Object.freeze({
     nodes,
     root,
+    graph,
     addNode(value, parent) {
-      const newNode = makeNode(value, parent);
+      const newNode = createNode(value, parent);
       graph[value] = newNode;
       if (root == null) root = newNode;
       parent?.addNeighboor(newNode);
@@ -17,8 +18,9 @@ export function makeGraph() {
 
     /**
      * Breadth First Search Algorithm
-     * @param {*} value
-     * @returns Node obj
+     *
+     * @param {*} value anything that can be stored in a node
+     * @returns Node obj with value searched
      */
     breadthFirstSearch(value) {
       let queue = [];

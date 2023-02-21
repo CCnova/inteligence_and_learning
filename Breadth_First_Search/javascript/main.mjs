@@ -1,3 +1,6 @@
+/**
+ * Example of a graph object
+ */
 const graph = {
   you: ["alice", "bob", "claire"],
   bob: ["anuj", "peggy"],
