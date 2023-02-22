@@ -22,7 +22,10 @@ export default function makePopulation(target, size, mutationRate) {
 
       for (let individual of this.individuals) {
         this.selectionProbabilityPool = this.selectionProbabilityPool.concat(
-          Array.from(Array(individual.fitness * 10), () => individual)
+          Array.from(
+            Array(Math.floor(individual.fitness) * 100),
+            () => individual
+          )
         );
       }
       console.log("DONE");
@@ -32,19 +35,18 @@ export default function makePopulation(target, size, mutationRate) {
     performReproduction() {
       console.log("PERFORMING REPRODUCTION...");
       for (let i = 0; i < individuals.length; i++) {
-        const parentAIndex = Math.random() * selectionProbabilityPool.length;
-        const parentBIndex = Math.random() * selectionProbabilityPool.length;
+        const parentAIndex = Math.floor(
+          Math.random() * selectionProbabilityPool.length
+        );
+        const parentBIndex = Math.floor(
+          Math.random() * selectionProbabilityPool.length
+        );
         const parentA = selectionProbabilityPool[parentAIndex];
         const parentB = selectionProbabilityPool[parentBIndex];
 
-        let child;
-        if (parentA && parentB) {
-          child = parentA.crossOver(parentB);
-          child.sufferMutation(mutationRate);
-          this.individuals[i] = child;
-        } else {
-          continue;
-        }
+        const child = parentA.crossOver(parentB);
+        child.sufferMutation(mutationRate);
+        this.individuals[i] = child;
       }
       console.log("DONE");
       console.log("NEW POPULATION: ", this.individuals);

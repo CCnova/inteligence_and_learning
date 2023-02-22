@@ -11,13 +11,14 @@ export default function makeDNA(size) {
     calculateFitness(target) {
       let score = 0;
       for (let i = 0; i < this.genes.length; i++) {
-        if (this.genes[i] === target[i]) score++;
+        if (this.genes[i] == target[i]) score++;
       }
-      this.fitness = score;
+      this.fitness = score / target.length;
+      this.fitness = Math.pow(this.fitness, 4);
     },
 
     crossOver(partner) {
-      const dividePoint = Math.floor(Math.random() * genes.length);
+      const dividePoint = Math.floor(this.genes.length / 2);
       const child = makeDNA(size);
       for (let i = 0; i < genes.length; i++) {
         if (i < dividePoint) child.genes[i] = this.genes[i];
