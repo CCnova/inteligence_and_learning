@@ -16,7 +16,12 @@ inquirer
   )
   .then(cleanInputData)
   .then(predictRating)
-  .then(console.log);
+  .then(logResult);
+
+function logResult(ratings) {
+  console.log("Here is the prediction of not seen movies rating");
+  console.log(ratings);
+}
 
 function cleanInputData(ratings) {
   return Object.keys(ratings).reduce((acc, movie) => {
@@ -33,7 +38,7 @@ function predictRating(ratings) {
     (movie) => ratings[movie] == null
   );
   const kNearestNeighboors = findKNearestNeighboors(ratings, 5);
-  console.log("K nearest neighboors: ", kNearestNeighboors);
+  console.log("Users with similar taste: ", kNearestNeighboors);
 
   return notSeenMovies.reduce(
     (predictions, movie) => ({
