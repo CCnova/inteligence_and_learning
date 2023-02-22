@@ -44,9 +44,12 @@ function calculateEuclideanSimilarity({ person1Name, person2Name }) {
     (key) => key !== "timestamp" && key !== "name"
   );
 
-  const differencesSum = movieTitles.reduce((acc, curr, index) => {
-    const diff = person1[movieTitles[index]] - person2[movieTitles[index]];
-    return acc + Math.pow(diff, 2);
+  const differencesSum = movieTitles.reduce((acc, _curr, index) => {
+    if (person1[movieTitles[index]] && person2[movieTitles[index]]) {
+      const diff = person1[movieTitles[index]] - person2[movieTitles[index]];
+      return acc + Math.pow(diff, 2);
+    }
+    return acc;
   }, 0);
 
   const differencesSquareRoot = Math.sqrt(differencesSum);
