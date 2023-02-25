@@ -1,3 +1,4 @@
+""" Math module """
 import math
 import json
 import inquirer
@@ -29,10 +30,10 @@ def calculate_euclidean_similarity(new_ratings: dict, existent_user_name: str) -
     return {**existent_user_ratings, 'similarity': 1/(1 + distance_sum_srqt)}
 
 
-def find_k_nearest_neighboors(ratings: dict, k: int) -> list:
+def find_k_nearest_neighboors(rates: dict, k: int) -> list:
     """ Find the k_nearest neighboors based on euclidean similarity """
     similarities = [calculate_euclidean_similarity(
-        ratings, user) for user in users]
+        rates, user) for user in users]
 
     return sorted(similarities, key=lambda s: s['similarity'], reverse=True)[:k]
 
@@ -49,11 +50,11 @@ def calculate_weighted_average(dict_list: list, average_key: str, weight_key: st
     return average/weight_sum
 
 
-def predict_not_seen_ratings(ratings: dict):
+def predict_not_seen_ratings(rates: dict):
     """ Make the actual prediction using k_nearest neighboors """
-    k_nearest_neighboors = find_k_nearest_neighboors(ratings, 5)
+    k_nearest_neighboors = find_k_nearest_neighboors(rates, 5)
     not_seen_movies = list(
-        filter(lambda m: ratings.get(m) == '', ratings.keys()))
+        filter(lambda m: rates.get(m) == '', ratings.keys()))
 
     ratings_prediction = {movie: 0 for movie in not_seen_movies}
     for not_seen_movie in not_seen_movies:
